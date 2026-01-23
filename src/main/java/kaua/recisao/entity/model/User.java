@@ -22,7 +22,7 @@ public class User implements UserDetails {
     @Column(nullable = false, length = 1000)
     private String name;
 
-    @Column(nullable = false, unique = true, length = 1000)
+    @Column(nullable = false, unique = false, length = 20)
     private String cpf;
 
     @Column(nullable = false, length = 1000)
@@ -40,7 +40,7 @@ public class User implements UserDetails {
 
     @Override
     public @Nullable String getPassword() {
-        return "";
+        return getPassword();
     }
 
     @Override
@@ -50,21 +50,21 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return UserDetails.super.isAccountNonExpired();
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return UserDetails.super.isAccountNonLocked();
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return UserDetails.super.isCredentialsNonExpired();
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
+        return true;
     }
 }
