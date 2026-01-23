@@ -1,5 +1,9 @@
 package kaua.recisao.entity.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,7 +14,22 @@ import java.util.List;
 public class User implements UserDetails {
 
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
+
+    @Column(nullable = false, length = 1000)
+    private String name;
+
+    @Column(nullable = false, unique = true, length = 1000)
+    private String cpf;
+
+    @Column(nullable = false, length = 1000)
+    private String password;
+
+    @Column(nullable = false, length = 1000)
+    private String provider;
 
 
 
