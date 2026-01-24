@@ -20,7 +20,8 @@ public class TokenConfig {
 
         try {
             String token = JWT.create()
-                    .withClaim("UserName " + user.getUsername())
+                    .withClaim("UserName ", user.getUsername())
+                    .withSubject(user.get)
         }
 
     }
