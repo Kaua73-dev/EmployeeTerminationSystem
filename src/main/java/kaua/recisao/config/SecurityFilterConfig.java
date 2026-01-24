@@ -6,6 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kaua.recisao.entity.repository.UserRepository;
+import kaua.recisao.exceptions.user.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,7 +32,7 @@ public class SecurityFilterConfig extends OncePerRequestFilter {
         if(token != null){
             var cpf = tokenConfig.validateToken(token);
             UserDetails user = userRepository.findByCpf(cpf).orElseThrow(() ->
-
+                    new UserNotFoundException()
                     );
 
             var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
