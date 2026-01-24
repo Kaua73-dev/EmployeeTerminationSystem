@@ -20,8 +20,8 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UserRegisterResponse register(UserRegisterRequest request, String cpf){
-        if(userRepository.findByCpf(cpf).isPresent()){
+    public UserRegisterResponse register(UserRegisterRequest request){
+        if(userRepository.findByCpf(request.cpf()).isPresent()){
             throw new UserAlreadyExistException();
         }
 
@@ -31,10 +31,12 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(request.password()));
         user.setProvider(request.provider());
 
+        User userSaved = userRepository.save(user);
+
         return new UserRegisterResponse(
-          user.getName(),
-          user.getCpf(),
-          user.getProvider()
+                userSaved.getName(),
+                userSaved.getCpf(),
+                userSaved.getProvider()
         );
 
     }
