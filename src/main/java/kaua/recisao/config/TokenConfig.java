@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import kaua.recisao.dto.response.token.TokenData;
 import kaua.recisao.entity.model.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -47,7 +48,7 @@ public class TokenConfig {
     }
 
 
-    public String validateToken(String token){
+    public TokenData validateToken(String token){
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
@@ -57,6 +58,8 @@ public class TokenConfig {
 
             String cpf = jwt.getSubject();
             String role = jwt.getClaim("role").asString();
+
+            return new TokenData(cpf, role);
 
         } catch (JWTVerificationException exception){
                 return "";
