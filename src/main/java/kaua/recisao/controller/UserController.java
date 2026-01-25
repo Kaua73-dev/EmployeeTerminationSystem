@@ -4,7 +4,7 @@ package kaua.recisao.controller;
 import kaua.recisao.dto.request.user.UserLoginRequest;
 import kaua.recisao.dto.request.user.UserRegisterRequest;
 import kaua.recisao.dto.response.user.UserLoginResponse;
-import kaua.recisao.dto.response.user.UserRegisterResponse;
+import kaua.recisao.dto.response.user.UserResponse;
 import kaua.recisao.service.user.UserService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +24,7 @@ public class UserController {
 
 
     @PostMapping("/register")
-    public UserRegisterResponse register(@RequestBody UserRegisterRequest request){
+    public UserResponse register(@RequestBody UserRegisterRequest request){
         return userService.register(request);
     }
 

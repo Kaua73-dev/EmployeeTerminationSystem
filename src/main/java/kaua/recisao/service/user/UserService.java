@@ -1,12 +1,11 @@
 package kaua.recisao.service.user;
 
 
-import kaua.recisao.config.SecurityConfig;
 import kaua.recisao.config.TokenConfig;
 import kaua.recisao.dto.request.user.UserLoginRequest;
 import kaua.recisao.dto.request.user.UserRegisterRequest;
 import kaua.recisao.dto.response.user.UserLoginResponse;
-import kaua.recisao.dto.response.user.UserRegisterResponse;
+import kaua.recisao.dto.response.user.UserResponse;
 import kaua.recisao.entity.model.User;
 import kaua.recisao.entity.repository.UserRepository;
 import kaua.recisao.exceptions.user.UserAlreadyExistException;
@@ -32,7 +31,7 @@ public class UserService {
         this.tokenConfig = tokenConfig;
     }
 
-    public UserRegisterResponse register(UserRegisterRequest request){
+    public UserResponse register(UserRegisterRequest request){
         if(userRepository.findByCpf(request.cpf()).isPresent()){
             throw new UserAlreadyExistException();
         }
@@ -45,7 +44,7 @@ public class UserService {
 
         User userSaved = userRepository.save(user);
 
-        return new UserRegisterResponse(
+        return new UserResponse(
                 userSaved.getName(),
                 userSaved.getCpf(),
                 userSaved.getProvider()
@@ -67,6 +66,11 @@ public class UserService {
 
 
     }
+
+
+    public
+
+
 
 
 
