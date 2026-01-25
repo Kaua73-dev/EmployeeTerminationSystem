@@ -44,5 +44,8 @@ public class UserController {
          userService.deleteUserByCpf(cpf);
     }
 
+    @PutMapping("/admin/users/{cpf}")
+    public UserResponse updateUserByCpf(@PathVariable String cpf, @RequestBody )
+
 
 }
