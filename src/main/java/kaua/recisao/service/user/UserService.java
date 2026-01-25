@@ -7,6 +7,7 @@ import kaua.recisao.dto.request.user.UserLoginRequest;
 import kaua.recisao.dto.request.user.UserRegisterRequest;
 import kaua.recisao.dto.response.user.UserLoginResponse;
 import kaua.recisao.dto.response.user.UserResponse;
+import kaua.recisao.entity.enums.UserEnum;
 import kaua.recisao.entity.model.User;
 import kaua.recisao.entity.repository.UserRepository;
 import kaua.recisao.exceptions.user.UserAlreadyExistException;
@@ -53,6 +54,7 @@ public class UserService extends AuthVerifyService {
         user.setCpf(request.cpf());
         user.setPassword(passwordEncoder.encode(request.password()));
         user.setProvider(request.provider());
+        user.setUserEnum(UserEnum.USER);
 
         User userSaved = userRepository.save(user);
 
