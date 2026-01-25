@@ -110,30 +110,33 @@ public class UserService extends AuthVerifyService {
     }
 
 
+    @Transactional
     public UserResponse updateUserByCpf(String cpf, UserUpdateRequest request){
+        User admin = getAuthenticate();
 
-        User user = userRepository.findByCpf(cpf).orElseThrow(UserNotAdminException::new
-         );
-
-         if(userRepository.findByCpf(cpf).isEmpty()){
-             throw new UserNotFoundException();
+         if(!admin.getUserEnum().equals(UserEnum.ADMIN)){
+             throw new UserNotAdminException();
          }
 
-         if(user.getName() != null){
-             user.setName(request.name());
-         }
+         User user = userRepository.findByCpf(cpf).orElseThrow(() ->
+                 new UserNotFoundException()
+                 );
 
-         if(user.getCpf() != null){
-             user.setCpf(request.cpf());
-         }
+        if(request.name() != null && !request.name().isBlank()){
+            user.setName(request.name());
+        }
 
-         if(user.getPassword() != null){
-             user.setPassword(passwordEncoder.encode(request.password()));
-         }
+        if(request.cpf() != null && !request.cpf().isBlank()){
+            user.setCpf(request.cpf());
+        }
 
-         if(user.getProvider() != null){
-             user.setProvider(request.provider());
-         }
+        if(request.password() != null && !request.password().isBlank()){
+            user.setPassword(passwordEncoder.encode(request.password()));
+        }
+
+        if(request.provider() != null && !request.provider().isBlank()){
+            user.setProvider(request.provider());
+        }
 
 
          return toResponse(userRepository.save(user));
