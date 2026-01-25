@@ -111,11 +111,10 @@ public class UserService extends AuthVerifyService {
 
 
     public UserResponse updateUserByCpf(String cpf, UserUpdateRequest request){
-        User user = getAuthenticate();
 
-         if(!user.getUserEnum().equals(UserEnum.ADMIN)){
-             throw new UserNotAdminException();
-         }
+        User user = userRepository.findByCpf(cpf).orElseThrow(() ->
+                new UserNotAdminException()
+                );
 
          if(userRepository.findByCpf(cpf).isEmpty()){
              throw new UserNotFoundException();
@@ -136,6 +135,7 @@ public class UserService extends AuthVerifyService {
          if(user.getProvider() != null){
              user.setProvider(request.provider());
          }
+
 
          return toResponse(userRepository.save(user));
     }
