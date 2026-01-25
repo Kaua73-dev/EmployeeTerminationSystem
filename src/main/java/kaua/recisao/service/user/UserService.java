@@ -112,15 +112,14 @@ public class UserService extends AuthVerifyService {
 
     public UserResponse updateUserByCpf(String cpf, UserUpdateRequest request){
 
-        User user = userRepository.findByCpf(cpf).orElseThrow(() ->
-                new UserNotAdminException()
+        User user = userRepository.findByCpf(cpf).orElseThrow(UserNotAdminException::new
                 );
 
          if(userRepository.findByCpf(cpf).isEmpty()){
              throw new UserNotFoundException();
          }
 
-         if(user.getName() != null){
+         if(user.getName() != null){gu
              user.setName(request.name());
          }
 
