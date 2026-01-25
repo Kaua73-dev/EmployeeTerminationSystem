@@ -5,6 +5,7 @@ import kaua.recisao.auth.AuthVerifyService;
 import kaua.recisao.config.TokenConfig;
 import kaua.recisao.dto.request.user.UserLoginRequest;
 import kaua.recisao.dto.request.user.UserRegisterRequest;
+import kaua.recisao.dto.request.user.UserUpdateRequest;
 import kaua.recisao.dto.response.user.UserLoginResponse;
 import kaua.recisao.dto.response.user.UserResponse;
 import kaua.recisao.entity.enums.UserEnum;
@@ -109,7 +110,7 @@ public class UserService extends AuthVerifyService {
     }
 
 
-    public UserResponse updateUserByCpf(String cpf, UserRegisterRequest request){
+    public UserResponse updateUserByCpf(String cpf, UserUpdateRequest request){
         User user = getAuthenticate();
 
          if(!user.getUserEnum().equals(UserEnum.ADMIN)){
