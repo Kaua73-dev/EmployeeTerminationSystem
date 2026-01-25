@@ -1,6 +1,7 @@
 package kaua.recisao.entity.model;
 
 import jakarta.persistence.*;
+import kaua.recisao.entity.enums.UserEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.jspecify.annotations.Nullable;
@@ -33,6 +34,8 @@ public class User implements UserDetails {
     @Column(nullable = false, length = 1000)
     private String provider;
 
+    @Enumerated(EnumType.STRING)
+    private UserEnum userEnum;
 
 
     @Override

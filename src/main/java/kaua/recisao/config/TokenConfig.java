@@ -28,6 +28,7 @@ public class TokenConfig {
             String token = JWT.create()
                     .withClaim("UserName ", user.getName())
                     .withSubject(user.getCpf())
+                    .withClaim("role", user.getUserEnum().name())
                     .withExpiresAt(genExpiration())
                     .withIssuedAt(Instant.now())
                     .sign(algorithm);
