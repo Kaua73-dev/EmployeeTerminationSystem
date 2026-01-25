@@ -109,5 +109,35 @@ public class UserService extends AuthVerifyService {
     }
 
 
+    public UserResponse updateUserByCpf(String cpf, UserRegisterRequest request){
+        User user = getAuthenticate();
+
+         if(!user.getUserEnum().equals(UserEnum.ADMIN)){
+             throw new UserNotAdminException();
+         }
+
+         if(userRepository.findByCpf(cpf).isEmpty()){
+             throw new UserNotFoundException();
+         }
+
+         if(user.getName() != null){
+             user.setName(request.name());
+         }
+
+         if(user.getCpf() != null){
+             user.setCpf(request.cpf());
+         }
+
+         if(user.getPassword() != null){
+             user.setPassword(passwordEncoder.encode(request.password()));
+         }
+
+         if(user.getProvider() != null){
+             user.setProvider(request.provider());
+         }
+
+         return toResponse(userRepository.save(user));
+    }
+
 
 }
