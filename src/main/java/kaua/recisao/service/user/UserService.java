@@ -18,6 +18,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -95,7 +96,7 @@ public class UserService extends AuthVerifyService {
                 .map(this::toResponse).toList();
     }
 
-
+    @Transactional
     public void deleteUserByCpf(String cpf){
         User user = getAuthenticate();
 
