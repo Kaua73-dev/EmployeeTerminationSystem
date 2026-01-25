@@ -24,7 +24,7 @@ public class User implements UserDetails {
     @Column(nullable = false, length = 1000)
     private String name;
 
-    @Column(nullable = false, unique = false, length = 20)
+    @Column(nullable = false, unique = true, length = 20)
     private String cpf;
 
     @Column(nullable = false, length = 1000)
@@ -42,12 +42,12 @@ public class User implements UserDetails {
 
     @Override
     public @Nullable String getPassword() {
-        return getPassword();
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return getCpf();
+        return this.cpf;
     }
 
     @Override
