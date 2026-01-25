@@ -1,5 +1,6 @@
 package kaua.recisao.entity.repository;
 
+import kaua.recisao.dto.response.user.UserResponse;
 import kaua.recisao.entity.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     Optional<User> findByCpf(String cpf);
 
-    List<User> findAllUsers();
 
 }

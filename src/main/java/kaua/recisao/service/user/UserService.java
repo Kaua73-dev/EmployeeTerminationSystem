@@ -84,7 +84,12 @@ public class UserService extends AuthVerifyService {
 
     public List<UserResponse> getAllUsers(){
         User user = getAuthenticate();
-        return userRepository.findAllUsers()
+
+       if(!user.getUserEnum().equals(UserEnum.ADMIN)){
+
+       }
+
+        return userRepository.findAll()
                 .stream()
                 .map(this::toResponse).toList();
     }
