@@ -87,7 +87,6 @@ public class UserService extends AuthVerifyService {
         return userRepository.findAllUsers()
                 .stream()
                 .map(this::toResponse).toList();
-
     }
 
 
