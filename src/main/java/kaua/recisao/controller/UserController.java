@@ -39,7 +39,10 @@ public class UserController {
     }
 
 
-    @DeleteMapping
+    @DeleteMapping("/admin/users/{cpf}")
+    public void deleteUserByCpf(@PathVariable String cpf){
+         userService.deleteUserByCpf(cpf);
+    }
 
 
 }
