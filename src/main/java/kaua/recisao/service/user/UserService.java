@@ -11,6 +11,7 @@ import kaua.recisao.entity.enums.UserEnum;
 import kaua.recisao.entity.model.User;
 import kaua.recisao.entity.repository.UserRepository;
 import kaua.recisao.exceptions.user.UserAlreadyExistException;
+import kaua.recisao.exceptions.user.UserNotAdminException;
 import kaua.recisao.exceptions.user.UserNotFoundException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -86,10 +87,10 @@ public class UserService extends AuthVerifyService {
         User user = getAuthenticate();
 
        if(!user.getUserEnum().equals(UserEnum.ADMIN)){
-
+           throw new UserNotAdminException();
        }
 
-        return userRepository.findAll()
+       return userRepository.findAll()
                 .stream()
                 .map(this::toResponse).toList();
     }

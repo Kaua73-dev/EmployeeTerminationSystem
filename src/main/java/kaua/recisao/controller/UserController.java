@@ -7,10 +7,9 @@ import kaua.recisao.dto.response.user.UserLoginResponse;
 import kaua.recisao.dto.response.user.UserResponse;
 import kaua.recisao.service.user.UserService;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/auth")
@@ -32,6 +31,11 @@ public class UserController {
     @PostMapping("/login")
     public UserLoginResponse login(@Validated @RequestBody UserLoginRequest request){
         return userService.login(request);
+    }
+
+    @GetMapping("/admin/users")
+    public List<UserResponse> getAllUsers(){
+        return userService.getAllUsers();
     }
 
 
