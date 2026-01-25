@@ -1,6 +1,7 @@
 package kaua.recisao.service.user;
 
 
+import kaua.recisao.auth.AuthVerifyService;
 import kaua.recisao.config.TokenConfig;
 import kaua.recisao.dto.request.user.UserLoginRequest;
 import kaua.recisao.dto.request.user.UserRegisterRequest;
@@ -16,13 +17,24 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class UserService {
+public class UserService extends AuthVerifyService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final TokenConfig tokenConfig;
+
+    private UserResponse toResponse(User u){
+        return new UserResponse(
+            u.getName(),
+            u.getCpf(),
+            u.getProvider()
+        );
+    }
+
 
     public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, TokenConfig tokenConfig) {
         this.userRepository = userRepository;
@@ -68,7 +80,14 @@ public class UserService {
     }
 
 
-    public
+    public List<UserResponse> getAllUsers(){
+        User user = getAuthenticate();
+        return userRepository.findAllUsers()
+                .stream()
+                .map(this::toResponse).toList();
+
+    }
+
 
 
 

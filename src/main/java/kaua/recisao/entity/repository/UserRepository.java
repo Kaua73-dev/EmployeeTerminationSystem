@@ -12,6 +12,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     Optional<User> findByCpf(String cpf);
 
-    List<User> getAllUsers();
+    List<User> findAllUsers();
 
 }
