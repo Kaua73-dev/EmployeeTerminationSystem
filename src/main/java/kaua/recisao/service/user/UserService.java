@@ -96,7 +96,16 @@ public class UserService extends AuthVerifyService {
     }
 
 
-    public
+    public void deleteUserByCpf(String cpf){
+        User user = getAuthenticate();
+
+        if(!user.getUserEnum().equals(UserEnum.ADMIN)){
+            throw new UserNotAdminException();
+        }
+
+        userRepository.deleteUserByCpf(cpf);
+
+    }
 
 
 
