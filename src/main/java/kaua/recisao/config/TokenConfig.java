@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import kaua.recisao.entity.model.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -26,7 +27,7 @@ public class TokenConfig {
 
         try {
             String token = JWT.create()
-                    .withClaim("UserName ", user.getName())
+                    .withClaim("UserName", user.getName())
                     .withSubject(user.getCpf())
                     .withClaim("role", user.getUserEnum().name())
                     .withExpiresAt(genExpiration())
@@ -50,10 +51,13 @@ public class TokenConfig {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
-            return JWT.require(algorithm)
+            DecodedJWT jwt = JWT.require(algorithm)
                     .build()
-                    .verify(token)
-                    .getSubject();
+                    .verify(token);
+
+            String cpf = jwt.getSubject();
+            String role = jwt.getClaim("role").asString();
+
         } catch (JWTVerificationException exception){
                 return "";
         }
