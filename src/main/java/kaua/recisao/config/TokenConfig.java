@@ -62,7 +62,7 @@ public class TokenConfig {
             return new TokenData(cpf, role);
 
         } catch (JWTVerificationException exception){
-                return "";
+                return null;
         }
     }
 
