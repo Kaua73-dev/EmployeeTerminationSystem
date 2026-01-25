@@ -3,6 +3,7 @@ package kaua.recisao.controller;
 
 import kaua.recisao.dto.request.user.UserLoginRequest;
 import kaua.recisao.dto.request.user.UserRegisterRequest;
+import kaua.recisao.dto.request.user.UserUpdateRequest;
 import kaua.recisao.dto.response.user.UserLoginResponse;
 import kaua.recisao.dto.response.user.UserResponse;
 import kaua.recisao.service.user.UserService;
@@ -45,7 +46,9 @@ public class UserController {
     }
 
     @PutMapping("/admin/users/{cpf}")
-    public UserResponse updateUserByCpf(@PathVariable String cpf, @RequestBody )
+    public UserResponse updateUserByCpf(@PathVariable String cpf, @RequestBody UserUpdateRequest request){
+        return userService.updateUserByCpf(cpf, request);
+    }
 
 
 }
