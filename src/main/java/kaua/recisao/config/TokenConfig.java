@@ -30,7 +30,6 @@ public class TokenConfig {
             String token = JWT.create()
                     .withClaim("UserName", user.getName())
                     .withSubject(user.getCpf())
-                    .withClaim("role", user.getUserEnum().name())
                     .withExpiresAt(genExpiration())
                     .withIssuedAt(Instant.now())
                     .sign(algorithm);
@@ -48,21 +47,17 @@ public class TokenConfig {
     }
 
 
-    public TokenData validateToken(String token){
+    public String validateToken(String token){
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
-            DecodedJWT jwt = JWT.require(algorithm)
-                    .build()
-                    .verify(token);
-
-            String cpf = jwt.getSubject();
-            String role = jwt.getClaim("role").asString();
-
-            return new TokenData(cpf, role);
+           return JWT.require(algorithm)
+                   .build()
+                   .verify(token)
+                   .getSubject();
 
         } catch (JWTVerificationException exception){
-                return null;
+                return "";
         }
     }
 
