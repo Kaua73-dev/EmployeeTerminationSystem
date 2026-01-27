@@ -2,6 +2,7 @@ package kaua.recisao.entity.model;
 
 
 import jakarta.persistence.*;
+import kaua.recisao.entity.enums.EmployeeTerminationEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,8 +35,16 @@ public class EmployeeTermination {
 
     private Boolean health_plan;
 
+    @Enumerated(EnumType.STRING)
+    private EmployeeTerminationEnum employeeTerminationEnum;
+
+    @Version
+    private Long version;
 
 
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable = false)
+    private User User;
 
 
 
