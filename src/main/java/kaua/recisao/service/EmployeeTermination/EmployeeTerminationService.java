@@ -24,6 +24,19 @@ public class EmployeeTerminationService extends AuthVerifyService {
         this.userRepository = userRepository;
     }
 
+    private EmployeeTerminationResponse toResponse(EmployeeTermination e){
+        return new EmployeeTerminationResponse(
+                e.getName_employee(),
+                e.getName_store(),
+                e.getDate_termination(),
+                e.getVt(),
+                e.getVr(),
+                e.getSac(),
+                e.getHealth_plan(),
+                e.getEmployeeTerminationEnum()
+        );
+    }
+
 
 
 
