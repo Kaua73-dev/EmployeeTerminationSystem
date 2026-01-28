@@ -8,6 +8,7 @@ import kaua.recisao.entity.enums.EmployeeTerminationEnum;
 import kaua.recisao.entity.model.EmployeeTermination;
 import kaua.recisao.entity.model.User;
 import kaua.recisao.entity.repository.employeeTermination.EmployeeTerminationRepository;
+import kaua.recisao.entity.repository.user.UserRepository;
 import kaua.recisao.exceptions.EmplooyeTermination.EmployeeTerminationAlreadyExistException;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +16,11 @@ import org.springframework.stereotype.Service;
 public class EmployeeTerminationService extends AuthVerifyService {
 
     private final EmployeeTerminationRepository employeeTerminationRepository;
+    private final UserRepository userRepository;
 
-
-    public EmployeeTerminationService(EmployeeTerminationRepository employeeTerminationRepository) {
+    public EmployeeTerminationService(EmployeeTerminationRepository employeeTerminationRepository, UserRepository userRepository) {
         this.employeeTerminationRepository = employeeTerminationRepository;
+        this.userRepository = userRepository;
     }
 
     private EmployeeTerminationResponse toResponse(EmployeeTermination e){
@@ -65,6 +67,16 @@ public class EmployeeTerminationService extends AuthVerifyService {
 
     }
 
+
+    public EmployeeTerminationResponse getAllEmployeeTermination(){
+
+        User user = getAuthenticate();
+
+        if(
+
+
+
+    }
 
 
 
