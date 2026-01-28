@@ -12,8 +12,6 @@ public record EmployeeTerminationRequest(
     Boolean vt,
     Boolean vr,
     Boolean sac,
-    Boolean healthPlan,
-    EmployeeTerminationEnum employeeTerminationEnum
-
+    Boolean healthPlan
 ) {
 }
