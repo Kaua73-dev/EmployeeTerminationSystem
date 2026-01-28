@@ -1,6 +1,7 @@
 package kaua.recisao.dto.response.EmployeeTermination;
 
 import kaua.recisao.entity.enums.EmployeeTerminationEnum;
+import kaua.recisao.entity.model.User;
 
 import java.time.LocalDate;
 
@@ -12,6 +13,7 @@ public record EmployeeTerminationResponse(
         Boolean vr,
         Boolean sac,
         Boolean healthPlan,
-        EmployeeTerminationEnum employeeTerminationEnum
+        EmployeeTerminationEnum employeeTerminationEnum,
+        User user
 ) {
 }

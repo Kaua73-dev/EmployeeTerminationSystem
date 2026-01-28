@@ -63,16 +63,7 @@ public class EmployeeTerminationService extends AuthVerifyService {
         termination.setEmployeeTerminationEnum(request.employeeTerminationEnum());
         termination.setUser(user);
 
-        employeeTerminationRepository.save(termination);
-
-        return new EmployeeTerminationResponse(
-
-
-
-
-        );
-
-
+        return toResponse(employeeTerminationRepository.save(termination));
 
     }
 
