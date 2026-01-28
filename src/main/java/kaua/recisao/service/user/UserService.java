@@ -118,8 +118,7 @@ public class UserService extends AuthVerifyService {
              throw new UserNotAdminException();
          }
 
-         User user = userRepository.findByCpf(cpf).orElseThrow(() ->
-                 new UserNotFoundException()
+         User user = userRepository.findByCpf(cpf).orElseThrow(UserNotFoundException::new
                  );
 
         if(request.name() != null && !request.name().isBlank()){

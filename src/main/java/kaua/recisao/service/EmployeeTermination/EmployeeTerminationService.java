@@ -33,7 +33,8 @@ public class EmployeeTerminationService extends AuthVerifyService {
                 e.getVr(),
                 e.getSac(),
                 e.getHealth_plan(),
-                e.getEmployeeTerminationEnum()
+                e.getEmployeeTerminationEnum(),
+                e.getUser()
         );
     }
 
