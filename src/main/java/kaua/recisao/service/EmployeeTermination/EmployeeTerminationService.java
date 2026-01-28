@@ -16,23 +16,21 @@ import org.springframework.stereotype.Service;
 public class EmployeeTerminationService extends AuthVerifyService {
 
     private final EmployeeTerminationRepository employeeTerminationRepository;
-    private final UserRepository userRepository;
 
 
-    public EmployeeTerminationService(EmployeeTerminationRepository employeeTerminationRepository, UserRepository userRepository) {
+    public EmployeeTerminationService(EmployeeTerminationRepository employeeTerminationRepository) {
         this.employeeTerminationRepository = employeeTerminationRepository;
-        this.userRepository = userRepository;
     }
 
     private EmployeeTerminationResponse toResponse(EmployeeTermination e){
         return new EmployeeTerminationResponse(
-                e.getName_employee(),
-                e.getName_store(),
-                e.getDate_termination(),
+                e.getNameEmployee(),
+                e.getNameStore(),
+                e.getDateTermination(),
                 e.getVt(),
                 e.getVr(),
                 e.getSac(),
-                e.getHealth_plan(),
+                e.getHealthPlan(),
                 e.getEmployeeTerminationEnum(),
                 e.getUser()
         );
@@ -54,17 +52,31 @@ public class EmployeeTerminationService extends AuthVerifyService {
 
 
         EmployeeTermination termination = new EmployeeTermination();
-        termination.setName_employee(request.nameEmployee());
-        termination.setName_store(request.nameStore());
-        termination.setDate_termination(request.dateTermination());
+        termination.setNameEmployee(request.nameEmployee());
+        termination.setNameStore(request.nameStore());
+        termination.setDateTermination(request.dateTermination());
         termination.setVt(request.vt());
         termination.setVr(request.vr());
         termination.setSac(request.sac());
-        termination.setHealth_plan(request.healthPlan());
+        termination.setHealthPlan(request.healthPlan());
         termination.setEmployeeTerminationEnum(request.employeeTerminationEnum());
         termination.setUser(user);
 
-        return toResponse(employeeTerminationRepository.save(termination));
+        EmployeeTermination employeeSaved = employeeTerminationRepository.save(termination);
+
+
+        return new EmployeeTerminationResponse(
+                employeeSaved.getNameEmployee(),
+                employeeSaved.getNameStore(),
+                employeeSaved.getDateTermination(),
+                employeeSaved.getVt(),
+                employeeSaved.getVr(),
+                employeeSaved.getSac(),
+                employeeSaved.getHealthPlan(),
+                employeeSaved.getEmployeeTerminationEnum(),
+                employeeSaved.getUser()
+
+        );
 
     }
 

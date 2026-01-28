@@ -19,13 +19,13 @@ public class EmployeeTermination {
     private Integer id;
 
     @Column(name="name_employee", nullable = false, length = 1000)
-    private String name_employee;
+    private String nameEmployee;
 
     @Column(name="name_store", nullable = false, length = 1000)
-    private String name_store;
+    private String nameStore;
 
     @Column(name="date_termination", nullable = false)
-    private LocalDate date_termination;
+    private LocalDate dateTermination;
 
     private Boolean vt;
 
@@ -33,7 +33,8 @@ public class EmployeeTermination {
 
     private Boolean sac;
 
-    private Boolean health_plan;
+    @Column(name="health_plan")
+    private Boolean healthPlan;
 
     @Enumerated(EnumType.STRING)
     private EmployeeTerminationEnum employeeTerminationEnum;
