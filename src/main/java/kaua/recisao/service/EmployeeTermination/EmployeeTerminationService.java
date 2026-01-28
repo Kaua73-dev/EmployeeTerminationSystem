@@ -12,6 +12,8 @@ import kaua.recisao.entity.repository.user.UserRepository;
 import kaua.recisao.exceptions.EmplooyeTermination.EmployeeTerminationAlreadyExistException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EmployeeTerminationService extends AuthVerifyService {
 
@@ -68,15 +70,15 @@ public class EmployeeTerminationService extends AuthVerifyService {
     }
 
 
-    public EmployeeTerminationResponse getAllEmployeeTermination(){
+        public List<EmployeeTerminationResponse> getAllEmployeeTermination(){
 
-        User user = getAuthenticate();
+            User user = getAuthenticate();
 
-        if(
+            return employeeTerminationRepository.findAll()
+                    .stream()
+                    .map(this::toResponse).toList();
 
-
-
-    }
+        }
 
 
 
