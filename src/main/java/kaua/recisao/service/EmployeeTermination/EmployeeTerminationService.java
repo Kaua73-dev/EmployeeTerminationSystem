@@ -31,7 +31,8 @@ public class EmployeeTerminationService extends AuthVerifyService {
                 e.getSac(),
                 e.getHealthPlan(),
                 e.getEmployeeTerminationEnum(),
-                e.getUser()
+                e.getVersion(),
+                e.getUser().getId()
         );
     }
 
@@ -60,18 +61,7 @@ public class EmployeeTerminationService extends AuthVerifyService {
         EmployeeTermination employeeSaved = employeeTerminationRepository.save(termination);
 
 
-        return new EmployeeTerminationResponse(
-                employeeSaved.getNameEmployee(),
-                employeeSaved.getNameStore(),
-                employeeSaved.getDateTermination(),
-                employeeSaved.getVt(),
-                employeeSaved.getVr(),
-                employeeSaved.getSac(),
-                employeeSaved.getHealthPlan(),
-                employeeSaved.getEmployeeTerminationEnum(),
-                employeeSaved.getUser()
-
-        );
+        return toResponse(employeeTerminationRepository.save(termination));
 
     }
 

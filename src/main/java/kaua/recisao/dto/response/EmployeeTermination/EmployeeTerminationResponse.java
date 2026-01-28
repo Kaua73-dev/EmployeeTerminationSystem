@@ -15,6 +15,6 @@ public record EmployeeTerminationResponse(
         Boolean healthPlan,
         EmployeeTerminationEnum employeeTerminationEnum,
         Long version,
-        Integer user_id
+        Integer user
 ) {
 }
