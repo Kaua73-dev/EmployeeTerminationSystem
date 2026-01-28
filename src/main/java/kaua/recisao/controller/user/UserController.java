@@ -1,4 +1,4 @@
-package kaua.recisao.controller;
+package kaua.recisao.controller.user;
 
 
 import kaua.recisao.dto.request.user.UserLoginRequest;
