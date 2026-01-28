@@ -1,7 +1,7 @@
 package kaua.recisao.auth;
 
 
-import kaua.recisao.entity.repository.UserRepository;
+import kaua.recisao.entity.repository.user.UserRepository;
 import kaua.recisao.exceptions.user.UserNotFoundException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

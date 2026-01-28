@@ -1,11 +1,9 @@
-package kaua.recisao.entity.repository;
+package kaua.recisao.entity.repository.user;
 
-import kaua.recisao.dto.response.user.UserResponse;
 import kaua.recisao.entity.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository

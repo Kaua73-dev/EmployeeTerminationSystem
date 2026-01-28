@@ -10,7 +10,7 @@ import kaua.recisao.dto.response.user.UserLoginResponse;
 import kaua.recisao.dto.response.user.UserResponse;
 import kaua.recisao.entity.enums.UserEnum;
 import kaua.recisao.entity.model.User;
-import kaua.recisao.entity.repository.UserRepository;
+import kaua.recisao.entity.repository.user.UserRepository;
 import kaua.recisao.exceptions.user.UserAlreadyExistException;
 import kaua.recisao.exceptions.user.UserNotAdminException;
 import kaua.recisao.exceptions.user.UserNotFoundException;

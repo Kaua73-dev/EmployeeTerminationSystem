@@ -1,4 +1,4 @@
-package kaua.recisao.entity.repository;
+package kaua.recisao.entity.repository.employeeTermination;
 
 import kaua.recisao.entity.model.EmployeeTermination;
 import org.springframework.data.jpa.repository.JpaRepository;
