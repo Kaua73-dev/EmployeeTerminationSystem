@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface EmployeeTerminationRepository extends JpaRepository<EmployeeTermination, Integer> {
 
-    Optional<EmployeeTermination> findByName(String nameEmployee);
+    Optional<EmployeeTermination> findByNameEmployee(String nameEmployee);
 
 }
