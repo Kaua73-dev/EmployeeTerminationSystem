@@ -42,11 +42,9 @@ public class EmployeeTerminationService extends AuthVerifyService {
     public EmployeeTerminationResponse createEmployeeTermination(EmployeeTerminationRequest request){
         User user = getAuthenticate();
 
-        if(!user.getCpf().equals(user.getCpf())){
-            throw new UserNotFoundException();
-        }
 
-        if(employeeTerminationRepository.findByNameEmployee(request.nameEmployee()).isEmpty()){
+
+        if(employeeTerminationRepository.findByNameEmployee(request.nameEmployee()).isPresent()){
             throw new EmployeeTerminationAlreadyExistException();
         }
 
