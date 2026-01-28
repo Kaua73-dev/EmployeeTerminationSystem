@@ -47,5 +47,4 @@ public class EmployeeTermination {
     private User User;
 
 
-
 }
