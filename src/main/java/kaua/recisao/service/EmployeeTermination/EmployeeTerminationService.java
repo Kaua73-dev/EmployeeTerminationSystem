@@ -6,6 +6,7 @@ import kaua.recisao.dto.request.EmployeeTermination.EmployeeTerminationRequest;
 import kaua.recisao.dto.response.EmployeeTermination.EmployeeTerminationResponse;
 import kaua.recisao.entity.model.User;
 import kaua.recisao.entity.repository.employeeTermination.EmployeeTerminationRepository;
+import kaua.recisao.exceptions.EmplooyeTermination.EmployeeTerminationAlreadyExistException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,7 +24,9 @@ public class EmployeeTerminationService extends AuthVerifyService {
     public EmployeeTerminationResponse createEmployeeTermination(EmployeeTerminationRequest request){
         User user = getAuthenticate();
 
-        if(employeeTerminationRepository.)
+        if(employeeTerminationRepository.findByNameEmployee(request.nameEmployee()).isEmpty()){
+            new EmployeeTerminationAlreadyExistException();
+        }
 
 
 
