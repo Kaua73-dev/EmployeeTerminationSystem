@@ -28,7 +28,9 @@ public class EmployeeTerminationController {
 
 
     @GetMapping("/employeeTermination")
-    public List<EmployeeTerminationResponse> findAllEmployeeTermination
+    public List<EmployeeTerminationResponse> findAllEmployeeTermination(){
+        return employeeTerminationService.findAllEmployeeTermination();
+    }
 
 
 }
