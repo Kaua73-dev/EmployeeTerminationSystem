@@ -10,6 +10,7 @@ import kaua.recisao.entity.model.User;
 import kaua.recisao.entity.repository.employeeTermination.EmployeeTerminationRepository;
 import kaua.recisao.entity.repository.user.UserRepository;
 import kaua.recisao.exceptions.EmplooyeTermination.EmployeeTerminationAlreadyExistException;
+import kaua.recisao.exceptions.EmplooyeTermination.EmployeeTerminationNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -85,13 +86,14 @@ public class EmployeeTerminationService extends AuthVerifyService {
             User user = getAuthenticate();
 
             EmployeeTermination termination = employeeTerminationRepository.findByNameEmployeeAndUser(request.nameEmployee(), user).orElseThrow(() ->
-
-                        new EmployeeTermination
-
+                        new EmployeeTerminationNotFoundException()
                     );
 
 
-            if()
+
+            (!termination.getVersion().equals(request.))
+
+
 
 
 
