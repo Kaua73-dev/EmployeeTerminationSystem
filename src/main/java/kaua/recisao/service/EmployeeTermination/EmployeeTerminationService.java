@@ -92,11 +92,29 @@ public class EmployeeTerminationService extends AuthVerifyService {
                     );
 
 
-
             if(!termination.getVersion().equals(request.version())){
                 throw new EmployeeTerminationVersionException();
             }
 
+            if(request.nameEmployee() != null && !request.nameEmployee().isBlank()){
+                termination.setNameEmployee(request.nameEmployee());
+            }
+
+            if(request.nameStore() != null && !request.nameStore().isBlank()){
+                termination.setNameStore(request.nameStore());
+            }
+
+            if(request.dateTermination() != null){
+                termination.setDateTermination(request.dateTermination());
+            }
+
+            if(request.vt() != null){
+                termination.setVt(request.vt());
+            }
+
+            if(request.vr() != null){
+                termination.setVt(request.vt());
+            }
 
 
 
