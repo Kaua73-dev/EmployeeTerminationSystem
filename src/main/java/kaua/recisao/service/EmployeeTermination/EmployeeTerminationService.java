@@ -87,8 +87,7 @@ public class EmployeeTerminationService extends AuthVerifyService {
         public EmployeeTerminationResponse updateEmployeeTerminationByName(EmployeeTerminationUpdateRequest request){
             User user = getAuthenticate();
 
-            EmployeeTermination termination = employeeTerminationRepository.findByNameEmployeeAndUser(request.nameEmployee(), user).orElseThrow(() ->
-                        new EmployeeTerminationNotFoundException()
+            EmployeeTermination termination = employeeTerminationRepository.findByNameEmployeeAndUser(request.nameEmployee(), user).orElseThrow(EmployeeTerminationNotFoundException::new
                     );
 
 
