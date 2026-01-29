@@ -70,7 +70,7 @@ public class EmployeeTerminationService extends AuthVerifyService {
     }
 
 
-        public List<EmployeeTerminationResponse> getAllEmployeeTermination(){
+        public List<EmployeeTerminationResponse> findAllEmployeeTermination(){
 
             User user = getAuthenticate();
 
