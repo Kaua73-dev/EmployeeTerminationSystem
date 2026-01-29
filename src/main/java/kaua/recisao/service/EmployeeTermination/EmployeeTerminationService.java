@@ -116,10 +116,16 @@ public class EmployeeTerminationService extends AuthVerifyService {
                 termination.setVt(request.vt());
             }
 
+            if(request.sac() != null){
+                termination.setSac(request.sac());
+            }
+
+            if(request.healthPlan() != null){
+                termination.setHealthPlan(request.healthPlan());
+            }
 
 
-
-
+            return toResponse(employeeTerminationRepository.save(termination));
 
 
         }
